@@ -1,4 +1,5 @@
 import sys
+import getpass
 
 
 
@@ -39,7 +40,7 @@ help_message =  "Usage: python3 main.py [arg] Example: python3 main.py -d Comman
     
 if sys.argv[1] == "-e":
         if len(sys.argv) < 4:
-            user_input_e = input("Please enter text to encrypt: ")
+            user_input_e = getpass.getpass("Please enter text to encrypt: ")
             shift_e = int(input("Please enter your key: "))
             encrypted_text_e = encrypt_text(user_input_e, shift_e)
 
