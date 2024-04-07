@@ -2,12 +2,17 @@ import sys
 import string 
 
 def check_strength(user_pass):
-    letters_uc = (user_pass)
-    print(letters_uc)
+    for char in user_pass:
+        if(char.isupper()):
+            letters_uc = char 
+            print(letters_uc)
 
-    if(user_pass.isupper()):
-     
-        pass
+        elif(char.islower()):
+            letters_lc = char 
+            print(letters_lc)
+        elif():
+            non_letter = char
+            print(non_letter)
 
 def check_password(user_pass):
     if(len(user_pass) >= 12):
