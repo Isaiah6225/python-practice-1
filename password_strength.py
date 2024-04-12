@@ -1,3 +1,6 @@
+import os
+import hashlib
+
 #Checks the strength of the password.
 #Does this by taking the amount of uppercase, lowercase, and non characters in the string.
 # It then creates a score out of 6 with 6 or more of a charcter type being equal to 2
@@ -52,7 +55,7 @@ def check_strength(user_pass):
                 nc_strength_number = 2
 
     total_strength = (uc_strength_number + lc_strength_number + nc_strength_number)
-    store_password(total_strength, user_pass)
+
 
     if(total_strength == 6):
         print("Strength: high!")
@@ -62,14 +65,33 @@ def check_strength(user_pass):
     elif(total_strength  <= 4):
         print("Strength: low")
         help_message()
-
-#prompts user if they want to store a password
+        
+    store_password(total_strength, user_pass)
+#prompts user if they want to store a passwordABCDEFGhijklm1234@3
 # will store the name of the file the user wants to create to store the password along with encryption key, and generating public and private key to decrpyt the file
 def store_password(total_strength, user_pass):
+
+
     if(total_strength == 6):
         user_store_pass_opt = input("Would you like to store the password? y/n: ")
         if(user_store_pass_opt == "y"):
-            pass
+
+            new_user = input("Have you used this program before? y/n ")
+            if(new_user == "y"):
+                pass
+            else: 
+                user_file_name = input("Enter file name: ")
+                pass_purpose = input("What website or organization is this password for? ")
+
+                sha_hash = hashlib.sha256()
+
+                sha_hash.update(user_pass)
+
+                with open(f"{user_file_name}.txt", "w+") as file: 
+                    file.write("Organization: {}, Password: {}\n".format(pass_purpose, user_pass))
+
+
+        
         elif(user_store_pass_opt == "n"):
             print("Thank you for using password manager!")
             SystemExit
