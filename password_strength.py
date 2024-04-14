@@ -78,14 +78,21 @@ def store_password(total_strength, user_pass):
 
             new_user = input("Have you used this program before? y/n ")
             if(new_user == "y"):
-                pass
+                path = input("Enter the file path: ")
+                user_file_name_ex = input("Please enter the name of the file: " )
+
+                if os.path.exists(path):
+                    pass_purpose_ex = input("What website or organization is this password for? ")
+
+                    with open(f"{path}/{user_file_name_ex}", "a+") as user_file: 
+                        user_file.write("Organization: {}, Password: {}\n".format(pass_purpose_ex, user_pass))
+                        
+
             else: 
                 user_file_name = input("Enter file name: ")
                 pass_purpose = input("What website or organization is this password for? ")
 
-                sha_hash = hashlib.sha256()
 
-                sha_hash.update(user_pass)
 
                 with open(f"{user_file_name}.txt", "w+") as file: 
                     file.write("Organization: {}, Password: {}\n".format(pass_purpose, user_pass))
