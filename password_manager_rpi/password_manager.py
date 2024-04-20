@@ -1,26 +1,44 @@
 import sys
 import os
 
+
+
+def format_data(user_pass, pass_purpose, pass_username):
+
+    pass_info = f"{user_pass} {pass_purpose} {pass_username}"
+
+    pass_info_bits = sys.getsizeof(pass_info) * 8
+
+
+def lita(user_pass, pass_purpose, pass_username):
+    format_data(user_pass, pass_purpose, pass_username)
+
 #stores new user file to a specific file path in the user's computer
 def new_store_password(user_pass):
 
-    path = input("Enter the file path: ")
-    user_file_name_ex = input("Please enter the name of the file: " )
+    path = input("Enter the file path: \n")
+    user_file_name_nw= input("Please enter the name of the file: \n")
+
+    
 
     if os.path.exists(path):
-        pass_purpose_ex = input("What website or organization is this password for? ")
+        pass_purpose_nw= input("What website or organization is this password for?\n")
+        pass_username_nw = input("What is the username of the account?\n")
 
-        with open(f"{path}/{user_file_name_ex}", "a+") as user_file: 
-            user_file.write("Organization: {}, Password: {}\n".format(pass_purpose_ex, user_pass))              
+        with open(f"{path}/{user_file_name_nw}.txt", "w+") as user_file: 
+            user_file.write("Organization: {},Username: {} , Password: {}\n".format(pass_purpose_nw, pass_username_nw, user_pass))              
 
 
 #Store reoccuring user passwords in a text file
 def store_password(user_pass):
-    user_file_name = input("Enter file name: ")
-    pass_purpose = input("What website or organization is this password for? ")
+    user_file_name = input("Enter file name: \n")
+    pass_purpose = input("What website or organization is this password for? \n")
+    pass_username = input("What is the username of the accounts? \n")
+    
+    lita(user_pass, pass_purpose, pass_username)
 
-    with open(f"{user_file_name}.txt", "w+") as file: 
-        file.write("Organization: {}, Password: {}\n".format(pass_purpose, user_pass))
+    with open(f"{user_file_name}.txt", "a+") as file: 
+        file.write("Organization: {}, Username: {}, Password: {}\n".format(pass_purpose, pass_username, user_pass))
     
 
 
