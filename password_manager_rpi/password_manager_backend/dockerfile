@@ -1,0 +1,18 @@
+FROM ubuntu
+
+RUN apt update 
+RUN apt install python3-pip -y
+RUN apt install python3-flask -y 
+RUN apt install python3-sqlalchemy -y
+RUN apt install python3-pymysql -y
+
+WORKDIR /password_manger_python
+
+COPY . .
+
+EXPOSE 5000
+
+ENV FLASK_APP=password_manager_web
+ENV FLASK_ENV=development
+
+CMD ["flask","run","--host=0.0.0.0" ]

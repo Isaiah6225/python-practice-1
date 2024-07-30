@@ -1,47 +1,6 @@
 import sys
 import os
 
-
-
-def format_data(user_pass, pass_purpose, pass_username):
-
-    pass_info = f"{user_pass} {pass_purpose} {pass_username}"
-
-    pass_info_bits = sys.getsizeof(pass_info) * 8
-
-
-def lita(user_pass, pass_purpose, pass_username):
-    format_data(user_pass, pass_purpose, pass_username)
-
-#stores new user file to a specific file path in the user's computer
-def new_store_password(user_pass):
-
-    path = input("Enter the file path: \n")
-    user_file_name_nw= input("Please enter the name of the file: \n")
-
-    
-
-    if os.path.exists(path):
-        pass_purpose_nw= input("What website or organization is this password for?\n")
-        pass_username_nw = input("What is the username of the account?\n")
-
-        with open(f"{path}/{user_file_name_nw}.txt", "w+") as user_file: 
-            user_file.write("Organization: {},Username: {} , Password: {}\n".format(pass_purpose_nw, pass_username_nw, user_pass))              
-
-
-#Store reoccuring user passwords in a text file
-def store_password(user_pass):
-    user_file_name = input("Enter file name: \n")
-    pass_purpose = input("What website or organization is this password for? \n")
-    pass_username = input("What is the username of the accounts? \n")
-    
-    lita(user_pass, pass_purpose, pass_username)
-
-    with open(f"{user_file_name}.txt", "a+") as file: 
-        file.write("Organization: {}, Username: {}, Password: {}\n".format(pass_purpose, pass_username, user_pass))
-    
-
-
 #Checks the strength of the password.
 #Does this by taking the amount of uppercase, lowercase, and non characters in the string.
 # It then creates a score out of 6 with 6 or more of a charcter type being equal to 2
@@ -105,7 +64,90 @@ def check_strength(user_pass):
         help_message()
     elif(total_strength  <= 4):
         print("Strength: low")
-        help_message()
+        help_message() 
+
+#stores new user file to a specific file path in the user's computer
+#txt file nu = new user
+def new_store_password_txt_nu(user_pass):
+    #consider resolving the file path to the current working directorys
+    #get the users name instead and add it to the name of txt file 
+    path = input("Enter the file path: \n")
+    user_file_name_nw= input("Please enter the name of the file: \n")
+
+        
+
+    if os.path.exists(path):
+        pass_purpose_nw= input("What website or organization is this password for?\n")
+        pass_username_nw = input("What is the username of the account?\n")
+
+        with open(f"{path}/{user_file_name_nw}.txt", "w+") as user_file: 
+            user_file.write("Organization: {},Username: {} , Password: {}\n".format(pass_purpose_nw, pass_username_nw, user_pass))  
+
+           
+
+#Store reoccuring user passwords in a text file
+#txt file ru = returning user
+def store_password_txt_ru(user_pass):
+    #get the users name and add it to the name of the txt file
+    #consider resolving the file path to the current working directorys
+    pass_purpose = input("What website or organization is this password for? \n")
+    pass_username = input("What is the username of the accounts? \n")
+
+    with open(f"user_pass.txt", "a+") as file: 
+        file.write("Organization: {}, Username: {}, Password: {}\n".format(pass_purpose, pass_username, user_pass))
+
+
+#new users store password decision tree
+def store_password_decision_tree_newusers(user_pass_1):
+    while True:
+        print("How would you like to store your password? \n")
+        print("1- SQL Database\n")
+        print("2- Text file\n")
+        print("3- AWS database\n")
+        print("4- Go back\n")
+        user_choice = input("What would you like to do? ")
+
+        if user_choice == '1':
+            pass
+
+        elif user_choice == '2':
+            new_store_password_txt_nu(user_pass_1)
+        elif user_choice == '3':
+            pass
+
+        elif user_choice == '4':
+            break
+        else:
+            print("Please enter a valid choice.")
+
+#reoccuring user store password decision tree
+def store_password_decision_tree_returninguser(user_pass_1):
+    while True:
+        print("How would you like to store your password? \n")
+        print("1- SQL Database\n")
+        print("2- Text file\n")
+        print("3- AWS database\n")
+        print("4- Go back\n")
+        user_choice = input("What would you like to do? ")
+
+        if user_choice == '1':
+            pass
+
+        elif user_choice == '2':
+            store_password_txt_ru(user_pass_1)
+        elif user_choice == '3':
+            pass
+
+        elif user_choice == '4':
+            break
+        else:
+            print("Please enter a valid choice.")
+
+
+    
+
+
+
 
 #Checks if the user password is greater than or equal to 12 characters.
 #runs help message otherwise
@@ -169,13 +211,15 @@ def main():
 
         elif user_choice_2 == '2':
             user_pass_1 = input("Please enter password stored: \n")
-            new_store_password(user_pass_1)
+            store_password_decision_tree_newusers(user_pass_1)
+            
 
         elif user_choice_2 == '3':
             break
 
         else:
             print("Please enter a valid choice.")
+
     #reoccuring user options
     elif user_choice == '2':
 
@@ -194,7 +238,7 @@ def main():
             elif user_choice_3 == '2':
                 
                 user_pass_2 = input("Please enter password stored: \n")
-                store_password(user_pass_2)
+                store_password_decision_tree_returninguser(user_pass_2)
 
             elif user_choice_2 == '3':
                 break

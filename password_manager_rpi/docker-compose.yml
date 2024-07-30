@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  
+  
+  password_manager_backends: 
+    image: flask1.5:91d52775293c
+    ports: 
+      - "5000:5000"
+
+  password_manager_db:
+    image: mysql_db:a67402d654e9
+    ports: 
+      - "33606:3306"

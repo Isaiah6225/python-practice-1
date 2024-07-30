@@ -1,0 +1,36 @@
+.home-container{
+    display: flex;
+    align-items: center;
+    height: 30vh;
+    opacity: 0.9;
+    flex-direction: column
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-bottom: 10px;
+}
+.home-container button:hover{
+    background-color: azure;
+}
+.add-password-button{
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    font-family: "Quicksand", sans-serif;
+}
+
+.home-container h1{
+    text-align: left;
+    
+}
+
+th, td {
+    border: 1px solid #ddd; 
+    padding: 8px; 
+    text-align: left; 
+    
+}
+
+

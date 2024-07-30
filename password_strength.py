@@ -67,7 +67,7 @@ def check_strength(user_pass):
         help_message()
         
     store_password(total_strength, user_pass)
-#prompts user if they want to store a passwordABCDEFGhijklm1234@3
+#prompts user if they want to store a password ABCDEFGhijklm1234@3
 # will store the name of the file the user wants to create to store the password along with encryption key, and generating public and private key to decrpyt the file
 def store_password(total_strength, user_pass):
 
@@ -111,6 +111,26 @@ def store_password(total_strength, user_pass):
 #Checks if the user password is greater than or equal to 12 characters.
 #runs help message otherwise
 def check_password(user_pass):
+    print(
+'''
+    Y
+  .-^-.
+ /     \      .- ~ ~ -.
+()     ()    /   _ _   `.                     _ _ _
+ \_   _/    /  /     \   \                . ~  _ _  ~ .
+   | |     /  /       \   \             .' .~       ~-. `.
+   | |    /  /         )   )           /  /             `.`.
+   \ \_ _/  /         /   /           /  /                `'
+    \_ _ _.'         /   /           (  (
+                    /   /             \  \\
+                   /   /               \  \\
+                  /   /                 )  )
+                 (   (                 /  /
+                  `.  `.             .'  /
+                    `.   ~ - - - - ~   .'
+                       ~ . _ _ _ _ . ~
+'''
+  )
     if(len(user_pass) >= 12):
         check_strength(user_pass)
         
